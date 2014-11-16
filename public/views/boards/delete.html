@@ -1,0 +1,16 @@
+<div class="modal fade" id="deleteBoard">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete board</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure that you want permanently delete "{{ board.name }}" board?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteModalBoard(board)">Delete board</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,22 @@
+<div class="modal fade" id="deleteLane">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete lane</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="alert alert-success alert-dismissable">
+          <b>Success!</b> Lane was successfully deleted
+        </div>
+
+        Are you sure that you want permanently delete "{{ lane.name }}" lane?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteModalLane(lane)">Delete lane</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

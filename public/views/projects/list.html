@@ -1,0 +1,62 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Projects
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Projects</li>
+    </ol>
+</section>
+
+<div ng-include="'views/projects/create.html'"></div>
+<div ng-include="'views/projects/delete.html'"></div>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" ng-click="hideAlert('.content .alert')">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    <span class="message">
+      <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    </span>
+  </div>
+
+  <div class="row">
+      <div class="col-xs-12">
+          <div class="box">
+              <div class="box-header">
+                  <div class="box-tools col-md-12">
+                    <input type="text" name="table_search" class="form-control input-sm search" style="width: 150px" placeholder="Search" ng-model="search.name"/>
+                    <button class="btn btn-sm btn-default search"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-primary btn-sm pull-right" modal-backdrop="static" ng-click="showCreateProjectModal('#saveProject')">Add project</button>
+                  </div>
+              </div><!-- /.box-header -->
+              <div class="box-body table-responsive no-padding">
+                  <table class="table table-hover text-center">
+                      <tr data-ng-if="projects.length > 0">
+                          <th>Name</th>
+                          <th>Status</th>
+                          <th>Options</th>
+                      </tr>
+                      <tr ng-repeat="project in projects | filter:search">
+                        <td><a href="/projects/{{ project.id }}">{{ project.name }}</a></td>
+                        <td>{{ project.status }}</td>
+                        <td>
+                          <span class="label label-success button" ng-click="showEditProjectModal(project, '#saveProject')">Edit</span>
+                          <span class="label label-danger button" ng-click="showDeleteProjectModal(project, '#deleteProject')">Delete</span>
+                        </td>
+                      </tr>
+                      <tr data-ng-if="projects.length == 0">
+                        <td colspan="3">No projects added</td>
+                      </tr>
+                  </table>
+              </div><!-- /.box-body -->
+          </div><!-- /.box -->
+      </div>
+  </div>
+
+</section><!-- /.content -->

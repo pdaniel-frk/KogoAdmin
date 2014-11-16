@@ -1,0 +1,68 @@
+<div class="modal fade" id="saveUser">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ modalTitle }}</h4>
+      </div>
+      <div class="modal-body">
+
+        <form role="form">
+
+          <div class="form-group">
+              <label>Username</label>
+              <input type="text" class="form-control" placeholder="Username" data-ng-model="user.username"/>
+          </div>
+
+          <div class="form-group">
+              <label>Password</label>
+              <input type="password" class="form-control" placeholder="Password" data-ng-model="user.password"/>
+          </div>
+
+          <div class="form-group">
+              <label>Email</label>
+              <input type="text" class="form-control" placeholder="Email" data-ng-model="user.email"/>
+          </div>
+
+          <div class="form-group">
+              <label>First name</label>
+              <input type="text" class="form-control" placeholder="First name" data-ng-model="user.firstName"/>
+          </div>
+
+          <div class="form-group">
+              <label>Middle name</label>
+              <input type="text" class="form-control" placeholder="Middle name" data-ng-model="user.middleName"/>
+          </div>
+
+          <div class="form-group">
+              <label>Last name</label>
+              <input type="text" class="form-control" placeholder="Last name" data-ng-model="user.lastName"/>
+          </div>
+
+          <input type="hidden" class="form-control" data-ng-model="user.roleId" value="3"/>
+
+          <div class="form-group">
+              <label>Status</label>
+              <select class="form-control" data-ng-model="user.status">
+                  <option value="pending">pending</option>
+                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
+                  <option value="suspended">suspended</option>
+                  <option value="deleted">deleted</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>Avatar</label>
+              <input type="file" ng-file-select="onFileSelect($files)" multiple accept="image/*">
+          </div>
+
+          <input type="hidden" class="form-control" data-ng-model="user.avatar"/>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveModalData(user)">Save user</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,48 @@
+
+<div class="modal fade" id="saveBoard">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ modalTitle }}</h4>
+      </div>
+      <div class="modal-body">
+
+        <form role="form">
+
+          <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" placeholder="Name" data-ng-model="form_board.name"/>
+          </div>
+
+          <div class="form-group">
+              <label>Description</label>
+              <textarea class="form-control" rows="5" placeholder="Description" data-ng-model="form_board.description"></textarea>
+          </div>
+
+          <div class="form-group">
+              <label>Status</label>
+              <select class="form-control" data-ng-model="form_board.status">
+                  <option value="pending">pending</option>
+                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
+                  <option value="suspended">suspended</option>
+                  <option value="deleted">deleted</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label>Project</label>
+              <select class="form-control" data-ng-model="form_board.projectId" ng-init="form_board.projectId">
+                  <option data-ng-repeat="project in projects" value="{{ project.id }}" >{{ project.name }}</option>
+              </select>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="saveModalBoardData(form_board)">Save board</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

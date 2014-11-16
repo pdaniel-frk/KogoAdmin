@@ -1,0 +1,93 @@
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Board management view
+  </h1>
+  <ol class="breadcrumb">
+    <li><i class="fa fa-dashboard"></i> <a href="/">Dashboard</a></li>
+    <li><a href="/projects">Projects</a></li>
+    <li><a href="/">Projects</a></li>
+    <li><a href="/projects/{{ project.id }}">{{ project.name }}</a></li>
+    <li class="active">{{ board.name }}</li>
+  </ol>
+</section>
+
+<div ng-include="'views/lanes/create.html'"></div>
+<div ng-include="'views/lanes/delete.html'"></div>
+<div ng-include="'views/boards/create.html'"></div>
+
+<!-- Main content -->
+<section class="content">
+
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" ng-click="hideAlert('.content .alert')">
+      <span aria-hidden="true">&times;</span>
+      <span class="sr-only">Close</span>
+    </button>
+    <span class="message">
+      <strong>Warning!</strong> Better check yourself, you're not looking too good.
+    </span>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <div class="box-tools col-md-12">
+            <button class="btn btn-primary btn-sm pull-right" modal-backdrop="static" ng-click="showCreateLaneModal('#saveLane')">Add Lane</button>
+          </div>
+        </div><!-- /.box-header -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Main row -->
+  <div class="row">
+    <!-- Main col -->
+    <section ng-repeat="lane in lanes track by lane.id" class="col-lg-1 one-of-{{ _.size(lanes) }} section-container">
+
+     <div class="box box-solid box-primary box-lane-container">
+        <div class="box-header text-center">
+          <h3 class="box-title">
+            Lane {{$index + 1}}
+          </h3>
+        </div>
+        <div class="box-body" droppable id="sequence-{{$index + 1}}">
+
+          <!-- Lane box -->
+           <div class="box box-primary box-lane" id="lane-{{lane.id}}" draggable>
+              <div class="box-header">
+                <h3 class="box-title">
+                  {{ lane.name }}
+                </h3>
+              </div>
+              <div class="box-body">
+                Description: {{ lane.description }}<br/>
+                Status: {{ lane.status }}<br/>
+                Created at: {{ lane.createdAt }}<br/>
+                Updated at: {{ lane.updatedAt }}<br/>
+                <!-- Tickets: 0 -->
+              </div><!-- /.box-body -->
+              <div class="box-footer">
+                &nbsp;
+                <img src="/images/edit-20-white.png" class="edit-button pull-right" ng-click="showEditLaneModal(lane, '#saveLane')">
+                <img src="/images/delete-20-white.png" class="delete-button pull-right" ng-click="showDeleteLaneModal(lane, '#deleteLane')">
+              </div><!-- /.box-footer-->
+          </div><!-- /.box - Lane -->
+        </div>
+      </div>
+    </section><!-- /.Main col -->
+
+    <section data-ng-if="_.size(lanes) == 0" class="col-lg-12">
+
+     <div class="box box-solid box-primary">
+
+        <div class="box-body text-center">
+          No lanes added
+        </div>
+      </div>
+    </section><!-- /.Main col -->
+  </div><!-- /.row (main row) -->
+
+</section><!-- /.content -->

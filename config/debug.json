@@ -1,0 +1,23 @@
+{
+  "express": {
+    "port": 3003
+  },
+  "logger" : {
+    "console" : true,
+    "filename": "logs/run.log",
+    "level": "silly",
+    "format": "dev"
+  },
+  "api": {
+    "host": "localhost",
+    "port": 3001
+  },
+  "session": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "uploads" : {
+    "dir" : "/images/avatars",
+    "tempDir" : "/tmp/kogo"
+  }
+}

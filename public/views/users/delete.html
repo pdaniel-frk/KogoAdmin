@@ -1,0 +1,22 @@
+<div class="modal fade" id="deleteUser">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Delete user</h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="alert alert-success alert-dismissable">
+          <b>Success!</b> User was successfully deleted
+        </div>
+
+        Are you sure that you want permanently delete "{{ user.username }}" user?
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteModalUser(user)">Delete user</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
