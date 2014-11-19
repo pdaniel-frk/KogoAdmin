@@ -21,7 +21,7 @@ appRoutes.config(['$routeProvider', '$locationProvider', function($routeProvider
 
     // action called on logout
     .when('/logout', {
-      templateUrl: '',
+      template: '',
       controller: 'LogoutController'
     })
 

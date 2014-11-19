@@ -93,9 +93,9 @@ usersListController.controller(
         // updated record
         } else {
 
-          var index, user;
+          var index, tempUser;
           for (index = 0; index < $scope.users.length; index++) {
-            user = $scope.users[index];
+            tempUser = $scope.users[index];
             if (user.id == tempUser.id) {
               $scope.users[index] = user;
             }
@@ -137,9 +137,9 @@ usersListController.controller(
     $scope.deleteUser(user.id)
       .then(function(updated) {
 
-        var index, user;
+        var index, tempUser;
         for (index = 0; index < $scope.users.length; index++) {
-          user = $scope.users[index];
+          tempUser = $scope.users[index];
           if (user.id == tempUser.id) {
             $scope.users.splice(index, 1);
           }
