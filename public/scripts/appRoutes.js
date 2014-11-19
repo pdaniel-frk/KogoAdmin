@@ -40,7 +40,7 @@ appRoutes.config(['$routeProvider', '$locationProvider', function($routeProvider
     })
 
     // manage lanes of selected board
-    .when('/projects/:projectId/board/:boardId', {
+    .when('/projects/:projectId/boards/:boardId', {
       templateUrl: '/static/views/boards/view.html',
       controller: 'BoardController'
     })

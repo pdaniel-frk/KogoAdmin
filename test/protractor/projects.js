@@ -20,20 +20,14 @@ describe('Projects list screen', function () {
 
         expect(arr.length).toBe(3);
         expect(arr[0].evaluate('project.name')).toBe('Universe');
-        expect(arr[0].evaluate('project.boardsCounter')).toBe(3);
-        expect(arr[0].evaluate('project.ticketsCounter')).toBe(60);
         expect(arr[0].evaluate('project.status')).toBe('active');
         expect(element(by.css('.table.table-hover a[href="/projects/1"]')).isPresent()).toBe(true);
 
         expect(arr[1].evaluate('project.name')).toBe('Galaxy');
-        expect(arr[1].evaluate('project.boardsCounter')).toBe(4);
-        expect(arr[1].evaluate('project.ticketsCounter')).toBe(0);
         expect(arr[1].evaluate('project.status')).toBe('active');
         expect(element(by.css('.table.table-hover a[href="/projects/2"]')).isPresent()).toBe(true);
 
         expect(arr[2].evaluate('project.name')).toBe('Atom');
-        expect(arr[2].evaluate('project.boardsCounter')).toBe(0);
-        expect(arr[2].evaluate('project.ticketsCounter')).toBe(0);
         expect(arr[2].evaluate('project.status')).toBe('active');
         expect(element(by.css('.table.table-hover a[href="/projects/3"]')).isPresent()).toBe(true);
       });

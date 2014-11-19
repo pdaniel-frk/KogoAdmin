@@ -44,7 +44,7 @@
                           <th>Options</th>
                       </tr>
                       <tr ng-repeat="board in boards | filter:search">
-                        <td><a href="/projects/{{ projectId }}/board/{{ board.id }}">{{ board.name }}</a></td>
+                        <td><a href="/projects/{{ projectId }}/boards/{{ board.id }}">{{ board.name }}</a></td>
                         <td>{{ board.status }}</td>
                         <td>
                           <span class="label label-success button" ng-click="showEditBoardModal(board, '#saveBoard')">Edit</span>
