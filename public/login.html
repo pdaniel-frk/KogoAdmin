@@ -18,11 +18,11 @@
           <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body>
+    <body data-ng-app="kogoAdminApp">
 
         <div class="form-box" id="login-box">
             <div class="header">Sign In</div>
-            <form action="/login" method="post" data-ng-app="KogoAdminApp" data-ng-controller="LoginController">
+            <form action="/login" method="post" data-ng-controller="LoginController">
                 <div class="body bg-gray">
                     <div class="form-group">
                         <input type="text" name="username" class="form-control" placeholder="Username" data-ng-model="form.username"/>

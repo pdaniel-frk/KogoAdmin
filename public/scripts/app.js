@@ -8,7 +8,7 @@
  */
 
 var app = angular.module(
-  'kogoApp',
+  'kogoAdminApp',
   [
     'ngRoute',
     'ngSanitize',
