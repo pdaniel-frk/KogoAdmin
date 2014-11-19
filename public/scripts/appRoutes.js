@@ -15,7 +15,7 @@ appRoutes.config(['$routeProvider', '$locationProvider', function($routeProvider
 
     // home page (dashboard view)
     .when('/', {
-      templateUrl: '/views/dashboard.html',
+      templateUrl: '/static/views/dashboard.html',
       controller: 'DashboardController'
     })
 
@@ -29,32 +29,32 @@ appRoutes.config(['$routeProvider', '$locationProvider', function($routeProvider
 
     // list of all projects
     .when('/projects', {
-      templateUrl: '/views/projects/list.html',
+      templateUrl: '/static/views/projects/list.html',
       controller: 'ProjectsListController'
     })
 
     // list all boards of project
     .when('/projects/:projectId', {
-      templateUrl: '/views/boards/list.html',
+      templateUrl: '/static/views/boards/list.html',
       controller: 'BoardsListController',
     })
 
     // manage lanes of selected board
     .when('/projects/:projectId/board/:boardId', {
-      templateUrl: '/views/boards/view.html',
+      templateUrl: '/static/views/boards/view.html',
       controller: 'BoardController'
     })
 
     // ------ Users related ------ //
 
     .when('/users', {
-      templateUrl: '/views/users/list.html',
+      templateUrl: '/static/views/users/list.html',
       controller: 'UsersListController'
     })
 
     // user details
     .when('/users/:userId', {
-      templateUrl: '/views/users/view.html',
+      templateUrl: '/static/views/users/view.html',
       controller: 'UserController'
     })
 
