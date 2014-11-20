@@ -204,6 +204,12 @@
   background-color: #E2715F;
 }
 
+#login-box .alert {
+  padding-left: 15px;
+  margin-left: 0px;
+  display: none;
+}
+
 /*
     Skins
     -----
