@@ -23,6 +23,28 @@ kogoAdminApp.controller(
         LoginService.login(loginForm)
           .then(function () {
             $window.location.href = '/';
+          }, function () {
+            showAlert(
+              'danger',
+              '#login-box .alert',
+              '<b>Error!</b> Incorrect username or password.'
+            );
           });
       }
+
+      // this method is a copy from app.js as we don't want to
+      // include the whole app for login only
+      $scope.hideAlert = function (alertSelector) {
+        var alert = $(alertSelector);
+        alert.hide();
+      };
+
+      // this method is a copy from app.js as we don't want to
+      // include the whole app for login only
+      var showAlert = function (alertType, alertSelector, message) {
+        var alert = $(alertSelector);
+        alert.removeClass().addClass('alert alert-' + alertType + ' alert-dismissable');
+        alert.children('.message').html(message);
+        alert.show();
+      };
 }]);
