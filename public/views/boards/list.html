@@ -10,8 +10,8 @@
     </ol>
 </section>
 
-<div ng-include="'views/boards/create.html'"></div>
-<div ng-include="'views/boards/delete.html'"></div>
+<div ng-include="'static/views/boards/create.html'"></div>
+<div ng-include="'static/views/boards/delete.html'"></div>
 
 <!-- Main content -->
 <section class="content">
@@ -44,7 +44,7 @@
                           <th>Options</th>
                       </tr>
                       <tr ng-repeat="board in boards | filter:search">
-                        <td><a href="/projects/{{ projectId }}/board/{{ board.id }}">{{ board.name }}</a></td>
+                        <td><a href="/projects/{{ projectId }}/boards/{{ board.id }}">{{ board.name }}</a></td>
                         <td>{{ board.status }}</td>
                         <td>
                           <span class="label label-success button" ng-click="showEditBoardModal(board, '#saveBoard')">Edit</span>

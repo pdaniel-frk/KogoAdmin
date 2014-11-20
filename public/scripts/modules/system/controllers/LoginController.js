@@ -8,7 +8,7 @@
  */
 
 var kogoAdminApp = angular.module(
-  'KogoAdminApp',
+  'kogoAdminApp',
   [
     // nothing here
   ]
