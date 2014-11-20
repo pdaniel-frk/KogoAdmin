@@ -130,6 +130,8 @@ module.exports = function(router, passport) {
   // -------------------------------- FRONTEND URLS -------------------------------
   // ------------------------------------------------------------------------------
 
+  router.get('/user', ensureAuthenticated, UserModule.Routes.Frontend.getDetails);
+
   router.get('/login', function(req, res){
     res.status(200).sendFile(ROOT_PATH + '/public/login.html');
   });

@@ -11,7 +11,7 @@ var usersService = angular.module('UsersService', [])
 
 usersService.factory('UsersService', ['$http', function($http) {
 
-  var usersApiUrl = '/api/users';
+  var usersApiUrl = '/users';
 
   return {
     // call to get all users
@@ -40,7 +40,7 @@ usersService.factory('UsersService', ['$http', function($http) {
     },
 
     getInfo : function() {
-      return $http.get('/api/user')
+      return $http.get('/user')
         .then(function(result){
            return result.data;
          });
