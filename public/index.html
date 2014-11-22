@@ -49,14 +49,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>{{ user.firstName}} {{ user.lastName}} <i class="caret"></i></span>
+                                <span>{{ identity.firstName}} {{ identity.lastName}} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-hs-green">
-                                    <img ng-src="{{ user.avatar }}" class="img-circle" alt="User Image" />
+                                    <img ng-src="{{ identity.avatar }}" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{ user.firstName}} {{ user.lastName}}
+                                        {{ identity.firstName}} {{ identity.lastName}}
                                         <small>Kogo administrator</small>
                                     </p>
                                 </li>
@@ -80,11 +80,11 @@
                     <!-- Sidebar user panel -->
                     <div class="user-panel">
                         <div class="pull-left image">
-                            <img ng-src="{{ user.avatar }}" class="img-circle" alt="User Image" />
+                            <img ng-src="{{ identity.avatar }}" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
                             <br/>
-                            <p>Hello, {{ user.firstName }}</p>
+                            <p>Hello, {{ identity.firstName }}</p>
                         </div>
                     </div>
 
@@ -144,6 +144,7 @@
         <script src="/static/scripts/modules/projects/controllers/ProjectsListController.js"></script>
         <script src="/static/scripts/modules/users/controllers/UsersListController.js"></script>
         <script src="/static/scripts/modules/users/controllers/UserController.js"></script>
+        <script src="/static/scripts/modules/users/controllers/UserModalController.js"></script>
         <script src="/static/scripts/modules/boards/controllers/BoardsListController.js"></script>
         <script src="/static/scripts/modules/boards/controllers/BoardController.js"></script>
         <script src="/static/scripts/modules/dashboard/controllers/DashboardController.js"></script>
@@ -166,6 +167,9 @@
         <script src="/static/scripts/directives/droppable.js"></script>
 
         <script src="/static/scripts/vendor/ng-file-upload/angular-file-upload.min.js"></script>
+
+        <script src="/static/scripts/vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+        <script src="/static/scripts/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 
     </base>
     </body>

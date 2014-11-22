@@ -10,9 +10,6 @@
     </ol>
 </section>
 
-<div ng-include="'static/views/users/create.html'"></div>
-<div ng-include="'static/views/users/delete.html'"></div>
-
 <!-- Main content -->
 <section class="content">
 
@@ -22,7 +19,7 @@
       <span class="sr-only">Close</span>
     </button>
     <span class="message">
-      <strong>Warning!</strong> Better check yourself, you're not looking too good.
+      <strong>Warning!</strong> Some error occurred
     </span>
   </div>
 
@@ -33,7 +30,7 @@
                   <div class="box-tools col-md-12">
                     <input type="text" name="table_search" class="form-control input-sm search" style="width: 150px" placeholder="Search" ng-model="search.username"/>
                     <button class="btn btn-sm btn-default search"><i class="fa fa-search"></i></button>
-                    <button class="btn btn-primary btn-sm pull-right" modal-backdrop="static" ng-click="showCreateUserModal('#saveUser')">Add user</button>
+                    <button class="btn btn-primary btn-sm pull-right" ng-click="showCreateUserModal('#saveUser')">Add user</button>
                   </div>
               </div><!-- /.box-header -->
               <div class="box-body table-responsive no-padding">

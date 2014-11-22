@@ -14,12 +14,14 @@ var app = angular.module(
     'ngSanitize',
     'appRoutes',
     'angularFileUpload',
+    'ui.bootstrap',
 
     'BoardsListController',
     'BoardController',
     'ProjectsListController',
     'UsersListController',
     'UserController',
+    'UserModalController',
     'DashboardController',
     'LogoutController',
 
@@ -38,7 +40,7 @@ app.run(["$rootScope", "UsersService", function($rootScope, UsersService){
   if (!$rootScope.user) {
     UsersService.getInfo()
       .then(function(user) {
-        $rootScope.user = user;
+        $rootScope.identity = user;
       });
   };
 
