@@ -98,14 +98,6 @@ projectsListController.controller(
     });
   };
 
-  // method called to open delete project modal
-  $scope.showDeleteProjectModal = function(project, modalSelector) {
-    // init modal
-    $scope.showModal(modalSelector);
-
-    $scope.project = _.extend({}, project);
-  };
-
   $scope.showDeleteProjectModal = function (project) {
 
     var modalInstance = $modal.open({

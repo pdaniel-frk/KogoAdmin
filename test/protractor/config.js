@@ -27,6 +27,10 @@ exports.config = {
     'boards-edit.js',
     'boards-delete.js',
 
+    'lanes-create.js',
+    'lanes-edit.js',
+    'lanes-delete.js',
+
   ],
   capabilities : {
     browserName : 'chrome',

@@ -1,0 +1,70 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Add User</h4>
+  </div>
+  <div class="modal-body">
+
+    <form role="form">
+
+      <div class="form-group">
+          <label>Username</label>
+          <input type="text" class="form-control" placeholder="Username" data-ng-model="modalUser.username"/>
+      </div>
+
+      <div class="form-group">
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="Password" data-ng-model="modalUser.password"/>
+      </div>
+
+      <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" placeholder="Email" data-ng-model="modalUser.email"/>
+      </div>
+
+      <div class="form-group">
+          <label>First name</label>
+          <input type="text" class="form-control" placeholder="First name" data-ng-model="modalUser.firstName"/>
+      </div>
+
+      <div class="form-group">
+          <label>Middle name</label>
+          <input type="text" class="form-control" placeholder="Middle name" data-ng-model="modalUser.middleName"/>
+      </div>
+
+      <div class="form-group">
+          <label>Last name</label>
+          <input type="text" class="form-control" placeholder="Last name" data-ng-model="modalUser.lastName"/>
+      </div>
+
+      <div class="form-group">
+          <label>Role</label>
+          <select class="form-control" data-ng-model="modalUser.roleId">
+              <option value="3">user</option>
+              <option value="4">admin</option>
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label>Status</label>
+          <select class="form-control" data-ng-model="modalUser.status">
+              <option value="pending">pending</option>
+              <option value="active">active</option>
+              <option value="inactive">inactive</option>
+              <option value="suspended">suspended</option>
+              <option value="deleted">deleted</option>
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label>Avatar</label>
+          <input type="file" ng-file-select="onFileSelect($files)" accept="image/*">
+      </div>
+
+      <input type="hidden" class="form-control" data-ng-model="modalUser.avatar"/>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-primary" id="createUserButton" ng-click="create(modalUser)">Create User</button>
+  </div>
+</div><!-- /.modal-content -->

@@ -1,26 +1,24 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h4 class="modal-title">Add Lane</h4>
+    <h4 class="modal-title">Add Board</h4>
   </div>
   <div class="modal-body">
+
     <form role="form">
 
       <div class="form-group">
           <label>Name</label>
-          <input type="text" class="form-control" placeholder="Name" data-ng-model="modalLane.name"/>
+          <input type="text" class="form-control" placeholder="Name" data-ng-model="modalBoard.name"/>
       </div>
 
       <div class="form-group">
           <label>Description</label>
-          <textarea class="form-control" rows="5" placeholder="Description" data-ng-model="modalLane.description"></textarea>
+          <textarea class="form-control" rows="5" placeholder="Description" data-ng-model="modalBoard.description"></textarea>
       </div>
-
-      <input type="hidden" class="form-control" data-ng-model="modalLane.sequenceNumber"/>
-      <input type="hidden" class="form-control" data-ng-model="modalLane.boardId"/>
 
       <div class="form-group">
           <label>Status</label>
-          <select class="form-control" data-ng-model="modalLane.status">
+          <select class="form-control" data-ng-model="modalBoard.status">
               <option value="pending">pending</option>
               <option value="active">active</option>
               <option value="inactive">inactive</option>
@@ -28,10 +26,20 @@
               <option value="deleted">deleted</option>
           </select>
       </div>
+
+      <div class="form-group">
+          <label>Project</label>
+          <select class="form-control"
+            data-ng-model="modalBoard.projectId"
+            data-ng-init="modalBoard.projectId"
+            data-ng-options="modalProject.id as modalProject.name for modalProject in modalProjects">
+          </select>
+      </div>
+
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-primary" id="createLaneButton" data-ng-click="create(modalLane)">Save Lane</button>
+    <button type="button" class="btn btn-primary" id="createBoardButton" data-ng-click="create(modalBoard)">Save Board</button>
   </div>
 </div><!-- /.modal-content -->

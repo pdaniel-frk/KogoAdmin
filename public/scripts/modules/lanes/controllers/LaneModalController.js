@@ -7,41 +7,41 @@
  * @license   https://github.com/HedonSoftware/Kogo/blob/master/LICENSE.md Proprietary software
  */
 
-var boardModalController = angular.module(
-  'BoardModalController',
+var laneModalController = angular.module(
+  'LaneModalController',
   [
-    'BoardsService',
+    'LanesService',
     'ProjectsService'
   ]
 );
 
-boardModalController.controller(
-  'BoardModalController',
+laneModalController.controller(
+  'LaneModalController',
   [
-    "$scope", "$modalInstance", "BoardsService", "ProjectsService", "board",
-    function ($scope, $modalInstance, BoardsService, ProjectsService, board
+    "$scope", "$modalInstance", "LanesService", "ProjectsService", "lane",
+    function ($scope, $modalInstance, LanesService, ProjectsService, lane
     ) {
 
-      $scope.modalBoard = _.extend({}, board);
+      $scope.modalLane = _.extend({}, lane);
 
-      // method called to create board
-      $scope.createBoard = function (board) {
+      // method called to create lane
+      $scope.createLane = function (lane) {
 
-        if (!_.isObject(board)) {
-          throw 'Invalid board passed';
+        if (!_.isObject(lane)) {
+          throw 'Invalid lane passed';
         }
 
-        return BoardsService.save(board);
+        return LanesService.save(lane);
       }
 
-      // method called to update board
-      $scope.updateBoard = function (board) {
+      // method called to update lane
+      $scope.updateLane = function (lane) {
 
-        if (!_.isObject(board)) {
-          throw 'Invalid board passed';
+        if (!_.isObject(lane)) {
+          throw 'Invalid lane passed';
         }
 
-        return BoardsService.save(board);
+        return LanesService.save(lane);
       }
 
       // method gets all projects
@@ -55,42 +55,42 @@ boardModalController.controller(
       // ---------------------------------------------
 
       /**
-       * Function called when 'create board' was clicked
+       * Function called when 'create lane' was clicked
        *
        * Role:
        * - validate form input
        *   * if error -> show error
-       * - use service to save board
+       * - use service to save lane
        *   * if sucess -> close modal
        *   * else -> show error
        */
-      $scope.create = function (board) {
+      $scope.create = function (lane) {
 
-        // saving board
-        return $scope.createBoard(board)
-          .then(function (board) {
-            $modalInstance.close(board);
+        // saving lane
+        return $scope.createLane(lane)
+          .then(function (lane) {
+            $modalInstance.close(lane);
           }, function (error) {
             console.log(error);
           });
       };
 
       /**
-       * Function called when 'update board' was clicked
+       * Function called when 'update lane' was clicked
        *
        * Role:
        * - validate form input
        *   * if error -> show error
-       * - use service to save board
+       * - use service to save lane
        *   * if sucess -> close modal
        *   * else -> show error
        */
-      $scope.update = function (board) {
+      $scope.update = function (lane) {
 
-        // saving board
-        return $scope.updateBoard(board)
-          .then(function (board) {
-            $modalInstance.close(board);
+        // saving lane
+        return $scope.updateLane(lane)
+          .then(function (lane) {
+            $modalInstance.close(lane);
           }, function (error) {
             console.log(error);
           });
@@ -102,21 +102,21 @@ boardModalController.controller(
        * Role:
        * - validate form input
        *   * if error -> show error
-       * - use service to save board
+       * - use service to save lane
        *   * if sucess -> close modal
        *   * else -> show error
        */
-      $scope.delete = function (board) {
+      $scope.delete = function (lane) {
 
         var data = {
-          "id" : board.id,
+          "id" : lane.id,
           "status" : "deleted"
         };
 
-        // saving board
-        return $scope.updateBoard(data)
-          .then(function (board) {
-            $modalInstance.close(board);
+        // saving lane
+        return $scope.updateLane(data)
+          .then(function (lane) {
+            $modalInstance.close(lane);
           }, function (error) {
             console.log(error);
           });

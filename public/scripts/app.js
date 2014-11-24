@@ -25,6 +25,7 @@ var app = angular.module(
     'UserController',
     'UserModalController',
     'DashboardController',
+    'LaneModalController',
     'LogoutController',
 
     'BoardsService',

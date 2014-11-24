@@ -40,7 +40,7 @@ describe('Boards overview screen', function () {
     expect(element(by.css('.modal-dialog h4')).getText()).toBe('Edit Board');
   });
 
-  it ('should contain all project model fields', function () {
+  it ('should contain all board model fields', function () {
 
     expect(element(by.model('modalBoard.name')).getAttribute('value')).toBe('newBoard');
     expect(element(by.model('modalBoard.description')).getAttribute('value')).toBe('Some long description of new board');
@@ -48,7 +48,7 @@ describe('Boards overview screen', function () {
     expect(element(by.model('modalBoard.projectId')).getAttribute('value')).toBe('1');
   });
 
-  it ('should allow to edit project', function () {
+  it ('should allow to edit board', function () {
 
     element(by.model('modalBoard.name')).clear();
     element(by.model('modalBoard.name')).sendKeys('updatedBoard');
