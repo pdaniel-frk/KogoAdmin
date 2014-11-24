@@ -14,7 +14,7 @@
 <section class="content">
 
   <div class="alert alert-success alert-dismissible" role="alert">
-    <button type="button" class="close" ng-click="hideAlert('.content .alert')">
+    <button type="button" class="close" data-ng-click="hideAlert('.content .alert')">
       <span aria-hidden="true">&times;</span>
       <span class="sr-only">Close</span>
     </button>
@@ -28,9 +28,9 @@
           <div class="box">
               <div class="box-header">
                   <div class="box-tools col-md-12">
-                    <input type="text" name="table_search" class="form-control input-sm search" style="width: 150px" placeholder="Search" ng-model="search.username"/>
+                    <input type="text" name="table_search" class="form-control input-sm search" style="width: 150px" placeholder="Search" data-ng-model="search.username"/>
                     <button class="btn btn-sm btn-default search"><i class="fa fa-search"></i></button>
-                    <button class="btn btn-primary btn-sm pull-right" ng-click="showCreateUserModal('#saveUser')">Add user</button>
+                    <button class="btn btn-primary btn-sm pull-right" id="showCreateUserModalButton" data-ng-click="showCreateUserModal()">Add User</button>
                   </div>
               </div><!-- /.box-header -->
               <div class="box-body table-responsive no-padding">
@@ -42,14 +42,14 @@
                           <th>Status</th>
                           <th>Options</th>
                       </tr>
-                      <tr ng-repeat="user in users | filter:search">
-                        <td><a href="/users/{{ user.id }}">{{ user.username }}</a></td>
+                      <tr data-ng-repeat="user in users | filter:search">
+                        <td><a class="info-link" href="/users/{{ user.id }}">{{ user.username }}</a></td>
                         <td>{{ user.firstName }}</td>
                         <td>{{ user.lastName }}</td>
                         <td>{{ user.status }}</td>
                         <td>
-                          <span class="label label-success button" ng-click="showEditUserModal(user, '#saveUser')">Edit</span>
-                          <span class="label label-danger button" ng-click="showDeleteUserModal(user, '#deleteUser')">Delete</span>
+                          <span class="label label-success edit button" data-ng-click="showEditUserModal(user)">Edit</span>
+                          <span class="label label-danger delete button" data-ng-click="showDeleteUserModal(user)">Delete</span>
                         </td>
                       </tr>
                   </table>

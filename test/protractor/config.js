@@ -11,8 +11,21 @@ exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: [
     'login.js',
-    // 'boards.js',
-    // 'projects.js',
+
+    'users-filter.js',
+    'users-create.js',
+    'users-edit.js',
+    'users-delete.js',
+
+    'projects-filter.js',
+    'projects-create.js',
+    'projects-edit.js',
+    'projects-delete.js',
+
+    'boards-filter.js',
+    'boards-create.js',
+    'boards-edit.js',
+
   ],
   capabilities : {
     browserName : 'chrome',

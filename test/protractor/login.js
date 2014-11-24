@@ -7,6 +7,10 @@
  * @license   https://github.com/HedonSoftware/KogoAdmin/blob/master/LICENSE.md Proprietary software
  */
 
+var fs = require('fs');
+
+ROOT_PATH = fs.realpathSync(__dirname + '/../../');
+
 describe('KogoAdmin login screen', function () {
 
   browser.driver.manage().window().maximize();
@@ -45,8 +49,8 @@ describe('KogoAdmin login screen', function () {
     element(by.model('form.username')).clear();
     element(by.model('form.password')).clear();
 
-    element(by.model('form.username')).sendKeys('fernald.schimmel');
-    element(by.model('form.password')).sendKeys('abc');
+    element(by.model('form.username')).sendKeys('admin');
+    element(by.model('form.password')).sendKeys('admin');
     element(by.css('form .footer button')).click();
 
     expect(browser.getTitle()).toEqual('KogoAdmin | Dashboard');

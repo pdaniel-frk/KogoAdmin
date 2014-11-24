@@ -17,38 +17,24 @@ var boardsListController = angular.module(
 
 boardsListController.controller(
   'BoardsListController',
-  function ($scope, BoardsService, ProjectsService, $routeParams)
+  ["$scope", "$routeParams", "$modal", "BoardsService", "ProjectsService",
+  function ($scope, $routeParams, $modal, BoardsService, ProjectsService)
 {
 
   // route params
   $scope.projectId = $routeParams.projectId;
 
-  // method gets all projects
-  $scope.getProjects = function () {
-    return ProjectsService.get(
-        {
-          conditions : {
-            status: ['pending','active','inactive','suspended']
-          }
-        }
-      )
-      .then(function (projects) {
-        $scope.projects = projects;
-
-        angular.forEach(projects, function (project) {
-          if (project.id == $scope.projectId) {
-            $scope.project = project;
-          }
-        });
+  // get currently selected project
+  ProjectsService.getById($scope.projectId)
+    .then(function (project) {
+      $scope.project = project;
     });
-  };
 
   // method gets all boards
   $scope.getBoards = function (projectId) {
     return BoardsService.get(
         {
           conditions : {
-            status: ['pending','active','inactive','suspended'],
             projectId: projectId
           }
         }
@@ -58,122 +44,113 @@ boardsListController.controller(
     });
   };
 
-  // method saves board
-  $scope.saveBoard = function (board) {
-    return BoardsService.save(board);
-  };
-
-  // method soft-deletes board by id
-  $scope.deleteBoard = function (boardId) {
-    return BoardsService.update(boardId, {status:"deleted"});
-  };
-
-  $scope.getProjects();
   $scope.getBoards($scope.projectId);
 
   // ---------------------------------------------
   // ---------- MODAL RELEATED FUNCTIONS ---------
   // ---------------------------------------------
 
-  // method called to open new board modal
-  $scope.showCreateBoardModal = function (modalSelector) {
-    // init modal
-    $scope.showModal(modalSelector);
+  $scope.showCreateBoardModal = function () {
 
-    // modal values
-    $scope.form_board = {
-      projectId : $scope.projectId,
-      status : 'active'
-    };
-    $scope.modalTitle = 'Add board';
-  };
-
-  // method called to open edit board modal
-  $scope.showEditBoardModal = function (board, modalSelector) {
-    // init modal
-    $scope.showModal(modalSelector);
-
-    $scope.form_board = _.extend({}, board);
-    $scope.modalTitle = 'Edit board';
-  };
-
-  // method called to save modal's data
-  $scope.saveModalBoardData = function (boardData) {
-
-    if (_.isEmpty(boardData)) {
-      $scope.showDangerAlert(
-        '.content .alert',
-        '<b>Sorry</b> You need to fill the form before saving it'
-      );
-      return;
-    }
-
-    $scope.saveBoard(boardData)
-      .then(function (board) {
-
-        // new record
-        if (!boardData.id) {
-          $scope.boards.push(board);
-
-        // updated record
-        } else {
-
-          angular.forEach($scope.boards, function (tempBoard, index) {
-            if (board.id == tempBoard.id) {
-              $scope.boards[index] = board;
-            }
-          });
-        }
-
-        $scope.closeModal($scope.currentModalSelector);
-
-        $scope.showSuccessAlert(
-          '.content .alert',
-          '<b>Sucess</b> Board was saved sucessfully'
-        );
-      });
-  }
-
-  // method called to close modal
-  $scope.closeModal = function (modalSelector) {
-    $scope.hideModal(modalSelector);
-  }
-
-  // method called to open delete board modal
-  $scope.showDeleteBoardModal = function (board, modalSelector) {
-    // init modal
-    $scope.showModal(modalSelector);
-
-    $scope.board = _.extend({}, board);
-  };
-
-  // method called when deletion is confirmed
-  $scope.deleteModalBoard = function (board) {
-
-    if (!board || !board.id) {
-      $scope.showDangerAlert(
-        '.content .alert',
-        '<b>Sorry</b> There was an issue with your request - please try again later.'
-      );
-    }
-
-    $scope.deleteBoard(board.id)
-      .then(function (updated) {
-
-        var tempBoard, index;
-        for (index = 0; index < $scope.boards.length; index++) {
-          tempBoard = $scope.boards[index];
-          if (board.id == tempBoard.id) {
-            $scope.boards.splice(index, 1);
+    var modalInstance = $modal.open({
+      templateUrl: 'static/views/boards/create.html',
+      controller: 'BoardModalController',
+      backdrop: 'static',
+      resolve: {
+        board : function () {
+          return {
+            "projectId" : parseInt($scope.projectId),
+            "status" : "active"
           }
         }
+      }
+    });
 
-        $scope.closeModal($scope.currentModalSelector);
+    modalInstance.result.then(function (board) {
 
-        $scope.showSuccessAlert(
-          '.content .alert',
-          '<b>Sucess</b> Board was deleted sucessfully'
-        );
-      });
+      // add board to local scope
+      $scope.boards.push(board);
+
+      $scope.showSuccessAlert(
+        '.content .alert',
+        '<b>Sucess</b> Board was created sucessfully'
+      );
+    }, function () {
+      // console.log('modal closed');
+    });
   };
-});
+
+  $scope.showEditBoardModal = function (board) {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'static/views/boards/edit.html',
+      controller: 'BoardModalController',
+      backdrop: 'static',
+      resolve: {
+        board : function () {
+          return board;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (board) {
+
+      // find and update board data in local scope
+      var index;
+      for (index = 0; index < $scope.boards.length; index++) {
+        if ($scope.boards[index].id === board.id) {
+
+          // if board changed project just delete from list
+          if (board.projectId !== $scope.projectId) {
+            $scope.boards.splice(index, 1);
+            break;
+          }
+
+          // else update project in list
+          $scope.boards[index] = board;
+          break;
+        }
+      }
+
+      $scope.showSuccessAlert(
+        '.content .alert',
+        '<b>Sucess</b> Board was updated sucessfully'
+      );
+    }, function () {
+      // console.log('modal closed');
+    });
+  };
+
+  $scope.showDeleteBoardModal = function (board) {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'static/views/boards/delete.html',
+      controller: 'BoardModalController',
+      backdrop: 'static',
+      resolve: {
+        board : function () {
+          return board;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (board) {
+
+      // update status of deleted board
+      var index;
+      for (index = 0; index < $scope.boards.length; index++) {
+        if ($scope.boards[index].id === board.id) {
+          $scope.boards[index].status = "deleted";
+          break;
+        }
+      }
+
+      $scope.showSuccessAlert(
+        '.content .alert',
+        '<b>Sucess</b> Board was sucessfully deleted(disabled)'
+      );
+    }, function () {
+      // console.log('modal closed');
+    });
+  };
+}]);

@@ -1,6 +1,6 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h4 class="modal-title">Add user</h4>
+    <h4 class="modal-title">Add User</h4>
   </div>
   <div class="modal-body">
 
@@ -57,7 +57,7 @@
 
       <div class="form-group">
           <label>Avatar</label>
-          <input type="file" ng-file-select="onFileSelect($files)" multiple accept="image/*">
+          <input type="file" ng-file-select="onFileSelect($files)" accept="image/*">
       </div>
 
       <input type="hidden" class="form-control" data-ng-model="modalUser.avatar"/>
@@ -65,6 +65,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-primary" ng-click="create(modalUser)">Save user</button>
+    <button type="button" class="btn btn-primary" id="createUserButton" ng-click="create(modalUser)">Create User</button>
   </div>
 </div><!-- /.modal-content -->

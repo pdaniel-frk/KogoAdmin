@@ -1,16 +1,12 @@
-<div class="modal fade" id="deleteProject">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Delete project</h4>
-      </div>
-      <div class="modal-body">
-        Are you sure that you want permanently delete "{{ project.name }}" project?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
-        <button type="button" class="btn btn-danger" ng-click="deleteModalProject(project)">Delete project</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Project</h4>
+  </div>
+  <div class="modal-body">
+    Are you sure that you want to delete(disable) project "{{ modalProject.name }}"?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-danger" id="deleteProjectButton" data-ng-click="delete(modalProject)">Delete Project</button>
+  </div>
+</div><!-- /.modal-content -->

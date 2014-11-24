@@ -1,14 +1,14 @@
 <div class="modal-content">
   <div class="modal-header">
-    <h4 class="modal-title">Delete user</h4>
+    <h4 class="modal-title">Delete User</h4>
   </div>
   <div class="modal-body">
 
-    Are you sure that you want delete(disable) user "{{ modalUser.username }}"?
+    Are you sure that you want to delete(disable) user "{{ modalUser.username }}"?
 
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-danger" ng-click="delete(modalUser)">Delete user</button>
+    <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
+    <button type="button" class="btn btn-danger" id="deleteUserButton" data-ng-click="delete(modalUser)">Delete User</button>
   </div>
 </div><!-- /.modal-content -->

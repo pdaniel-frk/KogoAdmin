@@ -16,101 +16,87 @@ var projectsListController = angular.module(
 
 projectsListController.controller(
   'ProjectsListController',
-  function($scope, ProjectsService, $routeParams)
+  ["$scope", "$routeParams", "$modal", "ProjectsService",
+  function($scope, $routeParams, $modal, ProjectsService)
 {
   // default projects list
   $scope.projects = [];
 
   // method gets all projects
   $scope.getProjects = function() {
-    ProjectsService.get(
-        {
-          conditions : {
-            status: ['pending','active','inactive','suspended']
-          }
-        }
-      )
+    ProjectsService.get()
       .then(function(projects) {
         $scope.projects = projects;
       })
   };
 
-  // method saves project
-  $scope.saveProject = function(project) {
-    return ProjectsService.save(project);
-  };
-
-  // method soft-deletes project by id
-  $scope.deleteProject = function(projectId) {
-    return ProjectsService.update(projectId, {status:"deleted"});
-  };
+  $scope.getProjects();
 
   // ---------------------------------------------
   // ---------- MODAL RELEATED FUNCTIONS ---------
   // ---------------------------------------------
 
-  // method called to open new project modal
-  $scope.showCreateProjectModal = function(modalSelector) {
-    // init modal
-    $scope.showModal(modalSelector);
+  $scope.showCreateProjectModal = function () {
 
-    // modal values
-    $scope.project = {
-      status : 'active'
-    };
-    $scope.modalTitle = 'Add project';
-  };
-
-  // method called to open edit project modal
-  $scope.showEditProjectModal = function(project, modalSelector) {
-    // init modal
-    $scope.showModal(modalSelector);
-
-    $scope.project = _.extend({}, project);
-    $scope.modalTitle = 'Edit project';
-  };
-
-  // method called to save modal's data
-  $scope.saveModalData = function(projectData) {
-
-    if (_.isEmpty(projectData)) {
-      $scope.showDangerAlert(
-        '.content .alert',
-        '<b>Sorry</b> You need to fill the form before saving it'
-      );
-      return;
-    }
-
-    $scope.saveProject(projectData)
-      .then(function(project) {
-
-        // new record
-        if (!projectData.id) {
-          $scope.projects.push(project);
-
-        // updated record
-        } else {
-
-          angular.forEach($scope.projects, function(tempProject, index){
-            if (project.id == tempProject.id) {
-              $scope.projects[index] = project;
-            }
-          });
+    var modalInstance = $modal.open({
+      templateUrl: 'static/views/projects/create.html',
+      controller: 'ProjectModalController',
+      backdrop: 'static',
+      resolve: {
+        project : function () {
+          return {
+            "status" : "active"
+          }
         }
+      }
+    });
 
-        $scope.closeModal($scope.currentModalSelector);
+    modalInstance.result.then(function (project) {
 
-        $scope.showSuccessAlert(
-          '.content .alert',
-          '<b>Sucess</b> Project was saved sucessfully'
-        );
-      });
-  }
+      // add project to local scope
+      $scope.projects.push(project);
 
-  // method called to close modal
-  $scope.closeModal = function(modalSelector) {
-    $scope.hideModal(modalSelector);
-  }
+      $scope.showSuccessAlert(
+        '.content .alert',
+        '<b>Sucess</b> Project was created sucessfully'
+      );
+    }, function () {
+      // console.log('modal closed');
+    });
+  };
+
+  $scope.showEditProjectModal = function (project) {
+
+    var modalInstance = $modal.open({
+      templateUrl: 'static/views/projects/edit.html',
+      controller: 'ProjectModalController',
+      backdrop: 'static',
+      resolve: {
+        project : function () {
+          return project;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (project) {
+
+      // find and update project data in local scope
+      var index;
+      for (index = 0; index < $scope.projects.length; index++) {
+        if ($scope.projects[index].id === project.id) {
+          $scope.projects[index] = project;
+          break;
+        }
+      }
+
+      $scope.showSuccessAlert(
+        '.content .alert',
+        '<b>Sucess</b> Project was updated sucessfully'
+      );
+    }, function () {
+      // console.log('modal closed');
+    });
+  };
 
   // method called to open delete project modal
   $scope.showDeleteProjectModal = function(project, modalSelector) {
@@ -120,34 +106,36 @@ projectsListController.controller(
     $scope.project = _.extend({}, project);
   };
 
-  // method called when deletion is confirmed
-  $scope.deleteModalProject = function(project) {
+  $scope.showDeleteProjectModal = function (project) {
 
-    if (!project || !project.id) {
-      $scope.showDangerAlert(
+    var modalInstance = $modal.open({
+      templateUrl: 'static/views/projects/delete.html',
+      controller: 'ProjectModalController',
+      backdrop: 'static',
+      resolve: {
+        project : function () {
+          return project;
+        }
+      }
+    });
+
+    modalInstance.result.then(function (project) {
+
+      // update status of deleted project
+      var index;
+      for (index = 0; index < $scope.projects.length; index++) {
+        if ($scope.projects[index].id === project.id) {
+          $scope.projects[index].status = "deleted";
+          break;
+        }
+      }
+
+      $scope.showSuccessAlert(
         '.content .alert',
-        '<b>Sorry</b> There was an issue with your request - please try again later.'
+        '<b>Sucess</b> Project was sucessfully deleted(disabled)'
       );
-    }
-
-    $scope.deleteProject(project.id)
-      .then(function(updated) {
-
-        angular.forEach($scope.projects, function(tempProject, index){
-          if (project.id == tempProject.id) {
-            $scope.projects.splice(index, 1);
-          }
-        });
-
-        $scope.closeModal($scope.currentModalSelector);
-
-        $scope.showSuccessAlert(
-          '.content .alert',
-          '<b>Sucess</b> Project was deleted sucessfully'
-        );
-      });
+    }, function () {
+      // console.log('modal closed');
+    });
   };
-
-  // Always called method to get all projects
-  $scope.getProjects();
-});
+}]);

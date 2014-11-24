@@ -60,7 +60,6 @@ userModalController.controller(
       $scope.create = function (user) {
 
         // validation
-        console.log('USER RECEIVED: ', user);
 
         // saving user
         return $scope.createUser(user)

@@ -63,7 +63,7 @@ usersListController.controller(
         '<b>Sucess</b> User was created sucessfully'
       );
     }, function () {
-      console.log('modal closed');
+      // console.log('modal closed');
     });
   };
 
@@ -99,7 +99,7 @@ usersListController.controller(
         '<b>Sucess</b> User was updated sucessfully'
       );
     }, function () {
-      console.log('modal closed');
+      // console.log('modal closed');
     });
   };
 
@@ -132,7 +132,7 @@ usersListController.controller(
         '<b>Sucess</b> User was sucessfully deleted(disabled)'
       );
     }, function () {
-      console.log('modal closed');
+      // console.log('modal closed');
     });
   };
 

@@ -17,8 +17,10 @@ var app = angular.module(
     'ui.bootstrap',
 
     'BoardsListController',
+    'BoardModalController',
     'BoardController',
     'ProjectsListController',
+    'ProjectModalController',
     'UsersListController',
     'UserController',
     'UserModalController',
