@@ -60,12 +60,11 @@ projectModalController.controller(
       $scope.create = function (project) {
 
         // validation
-        console.log('PROJECT RECEIVED: ', project);
 
         // saving project
         return $scope.createProject(project)
-          .then(function (records) {
-            $modalInstance.close(records);
+          .then(function (project) {
+            $modalInstance.close(project);
           }, function (error) {
             console.log(error);
           });

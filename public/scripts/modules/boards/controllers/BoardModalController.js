@@ -47,7 +47,6 @@ boardModalController.controller(
       ProjectsService.get()
         .then(function (projects) {
           $scope.modalProjects = projects;
-          console.log($scope.modalProjects);
       });
 
       // ---------------------------------------------
@@ -66,13 +65,10 @@ boardModalController.controller(
        */
       $scope.create = function (board) {
 
-        // validation
-        console.log('BOARD RECEIVED: ', board);
-
         // saving board
         return $scope.createBoard(board)
-          .then(function (records) {
-            $modalInstance.close(records);
+          .then(function (board) {
+            $modalInstance.close(board);
           }, function (error) {
             console.log(error);
           });

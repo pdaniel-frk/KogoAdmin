@@ -25,6 +25,7 @@ exports.config = {
     'boards-filter.js',
     'boards-create.js',
     'boards-edit.js',
+    'boards-delete.js',
 
   ],
   capabilities : {

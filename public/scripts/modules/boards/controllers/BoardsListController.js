@@ -22,7 +22,7 @@ boardsListController.controller(
 {
 
   // route params
-  $scope.projectId = $routeParams.projectId;
+  $scope.projectId = parseInt($routeParams.projectId);
 
   // get currently selected project
   ProjectsService.getById($scope.projectId)
@@ -69,7 +69,9 @@ boardsListController.controller(
     modalInstance.result.then(function (board) {
 
       // add board to local scope
-      $scope.boards.push(board);
+      if (board.projectId === $scope.projectId) {
+        $scope.boards.push(board);
+      }
 
       $scope.showSuccessAlert(
         '.content .alert',

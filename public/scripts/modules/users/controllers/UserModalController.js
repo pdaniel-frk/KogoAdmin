@@ -63,8 +63,8 @@ userModalController.controller(
 
         // saving user
         return $scope.createUser(user)
-          .then(function (records) {
-            $modalInstance.close(records);
+          .then(function (user) {
+            $modalInstance.close(user);
           }, function (error) {
             console.log(error);
           });

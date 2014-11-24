@@ -15,6 +15,9 @@ describe('Boards overview screen', function () {
     expect(element(by.css('.sidebar-menu a[href="/projects"]')).isPresent()).toBe(true);
     element(by.css('.sidebar-menu a[href="/projects"]')).click();
 
+    // just in case if previous tests didn't clear the search
+    element(by.model('search.name')).clear();
+
     expect(element(by.css('.table.table-hover a[href="/projects/2"]')).isPresent()).toBe(true);
     element(by.css('.table.table-hover a[href="/projects/2"]')).click();
 
@@ -58,7 +61,6 @@ describe('Boards overview screen', function () {
     element(by.css('#updateBoardButton')).click();
 
     element(by.model('search.name')).clear();
-
     element(by.model('search.name')).sendKeys('updatedBoard');
 
     element.all(by.repeater('board in boards | filter:search'))
@@ -66,7 +68,7 @@ describe('Boards overview screen', function () {
 
         expect(arr.length).toBe(1);
 
-        expect(arr[0].evaluate('board.name')).toBe('updatedProject');
+        expect(arr[0].evaluate('board.name')).toBe('updatedBoard');
         expect(arr[0].evaluate('board.description')).toBe('Some UPDATED long description of new board');
         expect(arr[0].evaluate('board.status')).toBe('inactive');
       });
@@ -102,7 +104,7 @@ describe('Boards overview screen', function () {
         expect(arr[2].evaluate('board.description')).toBe('Ideas incubator');
         expect(arr[2].evaluate('board.status')).toBe('active');
 
-        expect(arr[3].evaluate('board.name')).toBe('updatedProject');
+        expect(arr[3].evaluate('board.name')).toBe('updatedBoard');
         expect(arr[3].evaluate('board.description')).toBe('Some UPDATED long description of new board');
         expect(arr[3].evaluate('board.status')).toBe('inactive');
       });

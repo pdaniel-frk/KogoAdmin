@@ -3,10 +3,10 @@
     <h4 class="modal-title">Delete Board</h4>
   </div>
   <div class="modal-body">
-    Are you sure that you want to delete(disable) project "{{ board.name }}"?
+    Are you sure that you want to delete(disable) board "{{ modalBoard.name }}"?
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-ng-click="cancel()">Close</button>
-    <button type="button" class="btn btn-danger" id="deleteBoardButton" data-ng-click="delete(board)">Delete Board</button>
+    <button type="button" class="btn btn-danger" id="deleteBoardButton" data-ng-click="delete(modalBoard)">Delete Board</button>
   </div>
 </div><!-- /.modal-content -->

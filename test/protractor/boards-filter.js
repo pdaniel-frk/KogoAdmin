@@ -9,10 +9,13 @@
 
 describe('Boards list screen', function () {
 
-  it ('should list all projects', function () {
+  it ('should list all boards', function () {
 
     expect(element(by.css('.sidebar-menu a[href="/projects"]')).isPresent()).toBe(true);
     element(by.css('.sidebar-menu a[href="/projects"]')).click();
+
+    // just in case if previous tests didn't clear the search
+    element(by.model('search.name')).clear();
 
     expect(element(by.css('.table.table-hover a[href="/projects/1"]')).isPresent()).toBe(true);
     element(by.css('.table.table-hover a[href="/projects/1"]')).click();
