@@ -60,13 +60,30 @@ userModalController.controller(
       $scope.create = function (user) {
 
         // validation
+        if (!user.username || user.username.length < 1) {
+          $scope.formErrors = {
+            'username' : {
+              'USERNAME_TOO_SHORT' : 'Provided username is too short; it must be at least 1 character long'
+            }
+          };
+          return false;
+        }
+
+        if (!user.username || user.username.length > 50) {
+          $scope.formErrors = {
+            'username' : {
+              'USERNAME_TOO_LONG' : 'Provided username is too long; it must be less than 50 characters long'
+            }
+          };
+        }
 
         // saving user
         return $scope.createUser(user)
           .then(function (user) {
             $modalInstance.close(user);
-          }, function (error) {
-            console.log(error);
+          }, function (response) {
+            console.log(response.data);
+            $scope.formErrors = response.data;
           });
       };
 

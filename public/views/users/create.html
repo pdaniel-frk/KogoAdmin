@@ -6,46 +6,54 @@
 
     <form role="form">
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.username ? 'has-error' : ''">
           <label>Username</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.username">{{ error }}</p>
           <input type="text" class="form-control" placeholder="Username" data-ng-model="modalUser.username"/>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.password ? 'has-error' : ''">
           <label>Password</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.password">{{ error }}</p>
           <input type="password" class="form-control" placeholder="Password" data-ng-model="modalUser.password"/>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.email ? 'has-error' : ''">
           <label>Email</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.email">{{ error }}</p>
           <input type="text" class="form-control" placeholder="Email" data-ng-model="modalUser.email"/>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.firstName ? 'has-error' : ''">
           <label>First name</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.firstName">{{ error }}</p>
           <input type="text" class="form-control" placeholder="First name" data-ng-model="modalUser.firstName"/>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.middleName ? 'has-error' : ''">
           <label>Middle name</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.middleName">{{ error }}</p>
           <input type="text" class="form-control" placeholder="Middle name" data-ng-model="modalUser.middleName"/>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.lastName ? 'has-error' : ''">
           <label>Last name</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.lastName">{{ error }}</p>
           <input type="text" class="form-control" placeholder="Last name" data-ng-model="modalUser.lastName"/>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.roleId ? 'has-error' : ''">
           <label>Role</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.roleId">{{ error }}</p>
           <select class="form-control" data-ng-model="modalUser.roleId">
               <option value="3">user</option>
               <option value="4">admin</option>
           </select>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.status ? 'has-error' : ''">
           <label>Status</label>
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.status">{{ error }}</p>
           <select class="form-control" data-ng-model="modalUser.status">
               <option value="pending">pending</option>
               <option value="active">active</option>
@@ -55,9 +63,10 @@
           </select>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" data-ng-class="formErrors.avatar ? 'has-error' : ''">
           <label>Avatar</label>
-          <input type="file" ng-file-select="onFileSelect($files)" accept="image/*">
+          <p class="text-danger" data-ng-repeat="(errorCode, error) in formErrors.avatar">{{ error }}</p>
+          <input type="file" data-ng-file-select="onFileSelect($files)" accept="image/*">
       </div>
 
       <input type="hidden" class="form-control" data-ng-model="modalUser.avatar"/>
